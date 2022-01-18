@@ -4,6 +4,7 @@
 #include <map>
 #include <set>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -19,8 +20,8 @@ void fcm::readFile(char * readFile) {
     
     while(ifs.good()) {
         string context = "";
-        ifs.get(c);
         char c;
+        ifs.get(c);
         alphabet.insert(c);
         kDone++;
         if(this->k < kDone){
