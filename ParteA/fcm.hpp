@@ -17,5 +17,7 @@ class fcm {
         fcm(int k, int a);
         fcm();
         void readFile(char * fileName);
+        void printMap();
+        void updateMapAlphabet(char c);
         set<char> alphabet;
 };

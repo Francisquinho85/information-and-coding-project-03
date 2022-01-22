@@ -10,5 +10,6 @@ int main(int argc,char** argv){
     test.readFile("texto.txt");
     int s = test.alphabet.size();
     cout << "SIZE " << s << '\n';
+    test.printMap();
     return 0;
 }
