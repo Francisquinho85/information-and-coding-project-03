@@ -5,6 +5,7 @@
 #include <set>
 #include <vector>
 #include <algorithm>
+#include <cstring>
 
 using namespace std;
 
@@ -17,11 +18,14 @@ void fcm::readFile(char * readFile) {
 
     ifstream ifs(readFile);
     int kDone = 0;
-    
-    while(ifs.good()) {
+    char c;
+
+    while(ifs.get(c)) {
         string context = "";
-        char c;
-        ifs.get(c);
+
+        if(c == '\n' || c == '\t' || c == '\r'){
+            continue;
+        }
 
         if(!alphabet.count(c)){
             alphabet.insert(c);
@@ -59,6 +63,7 @@ void fcm::readFile(char * readFile) {
             this->ctx.push_back(c);
         }
     }
+    ifs.close();
 }
 
 void fcm::printMap() {
@@ -86,5 +91,55 @@ void fcm::updateMapAlphabet(char c) {
             internalMap.insert(pair<char,int>(c,0));
             mapOfMaps[it->first] = internalMap;
         }
+    }
+}
+
+void fcm::writeMapToFile(char * fileName){
+    
+    map<string,map<char,int>>::iterator it;
+    ofstream ofs;
+    ofs.open(fileName, std::ofstream::out | std::ofstream::trunc);
+
+    for(it = mapOfMaps.begin(); it != mapOfMaps.end(); it++) {
+        ofs << it->first << "\t";
+        map<char,int> internalMap = it->second;
+        map<char,int>::iterator it2;
+
+        for(it2 = internalMap.begin(); it2 != internalMap.end(); it2++){
+            ofs << it2->first << "->" << it2->second << "\t";
+        }
+        ofs << endl;
+    }
+
+    ofs.close();
+}
+
+void fcm::readMapFromFile(char * fileName) {
+
+    ifstream ifs(fileName);
+    string line;
+    string delimiter = "\t";
+
+    while(getline(ifs,line)){
+        size_t pos = line.find(delimiter);
+        string firstToken = line.substr(0, pos);
+        line.erase(0, pos + delimiter.length());
+        map<char,int> tmp;
+
+        while ((pos = line.find(delimiter)) != std::string::npos) {
+            string token = line.substr(0, pos);
+            string c = token.substr(0,token.find("->"));
+            string numberOfHitsStr = token.substr(token.find(">"));
+            numberOfHitsStr.erase(0,1);
+            line.erase(0, pos + delimiter.length());
+
+            int n = c.length();
+            char char_array[n + 1];
+            strcpy(char_array, c.c_str());
+            int numberOfHits = stoi(numberOfHitsStr);
+
+            tmp.insert(pair<char,int>(char_array[0],numberOfHits));
+        }
+        mapOfMaps.insert(pair<string,map<char,int>>(firstToken,tmp));
     }
 }
