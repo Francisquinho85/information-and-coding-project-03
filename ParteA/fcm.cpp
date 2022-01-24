@@ -6,6 +6,7 @@
 #include <vector>
 #include <algorithm>
 #include <cstring>
+#include <math.h>
 
 using namespace std;
 
@@ -143,3 +144,66 @@ void fcm::readMapFromFile(char * fileName) {
         mapOfMaps.insert(pair<string,map<char,int>>(firstToken,tmp));
     }
 }
+
+int fcm::get_total_context(string s){
+    int counter = 0;
+    
+    if(mapOfMaps.find(s)!=mapOfMaps.end()){
+        map<char,int> tmp;
+        tmp = mapOfMaps[s];
+        map<char,int>::iterator it2;
+        for(it2 = tmp.begin(); it2 != tmp.end(); it2++){
+            counter += it2->second;
+        }
+
+    }
+    return counter;    
+}
+double fcm::get_entropy_context(string s){
+    double entropy;
+    double prob;
+    if(mapOfMaps.find(s)!=mapOfMaps.end()){
+        map<char,int> tmp;
+        tmp = mapOfMaps[s];
+        map<char,int>::iterator it2;
+        for(it2 = tmp.begin(); it2 != tmp.end(); it2++){
+            prob = (it2->second+(double)this->a) / (get_total_context(s)+((double)this->a*3));
+            entropy += prob * log(prob);
+        }
+    } 
+    return -entropy;
+}
+
+int fcm::get_total_map(){
+    int counter = 0;
+    
+    map<string,map<char,int>>::iterator it;
+
+    for(it = mapOfMaps.begin(); it != mapOfMaps.end(); it++) {
+        map<char,int> internalMap = it->second;
+        map<char,int>::iterator it2;
+
+        for(it2 = internalMap.begin(); it2 != internalMap.end(); it2++){
+            counter += it2->first;
+        }
+    }
+    return counter;    
+}
+
+double fcm::get_entropy_map(){
+    double total_entropy;
+    map<string,map<char,int>>::iterator it;
+
+    for(it = mapOfMaps.begin(); it != mapOfMaps.end(); it++) {
+        string s = it->first;
+        total_entropy += get_entropy_context(s) * get_total_context(s);
+    } 
+    return total_entropy/get_total_map();
+}
+
+
+        
+    
+
+
+

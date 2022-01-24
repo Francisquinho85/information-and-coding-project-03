@@ -20,5 +20,9 @@ class fcm {
         void updateMapAlphabet(char c);
         void writeMapToFile(char * fileToWrite);
         void readMapFromFile(char * fileToRead);
+        int get_total_context(string s);
+        double get_entropy_context(string s);
+        int get_total_map();
+        double get_entropy_map();
         set<char> alphabet;
 };

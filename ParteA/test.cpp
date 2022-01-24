@@ -11,6 +11,10 @@ int main(int argc,char** argv){
     //test.printMap();
     //test.writeMapToFile("mapaPortugues.txt");
     test.readMapFromFile("mapaPortugues.txt");
+    cout << "get_total context(?) "<<test.get_total_context("ii")<< "\n";
+    cout << "get_entropy_context(?) " << test.get_entropy_context("ii")<< "\n";
+    cout << "get_total_map(?) "<<test.get_total_map()<< "\n";
+    cout << "get_entropy_map(?) " << test.get_entropy_map()<< "\n";
     test.printMap();
     return 0;
 }
