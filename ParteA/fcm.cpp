@@ -20,16 +20,26 @@ void fcm::readFile(char * readFile) {
     ifstream ifs(readFile);
     int kDone = 0;
     char c;
-
+    string s;
     while(ifs.get(c)) {
         string context = "";
+
+        if(c<0 || c >127){
+            s = "";
+            s += c;
+            ifs.get(c);
+            s += c;
+        }
+        else{
+            s = c;
+        }
 
         if(c == '\n' || c == '\t' || c == '\r'){
             continue;
         }
 
-        if(!alphabet.count(c)){
-            alphabet.insert(c);
+        if(!alphabet.count(s)){
+            alphabet.insert(s);
             //updateMapAlphabet(c);
         }
 
@@ -40,39 +50,39 @@ void fcm::readFile(char * readFile) {
             }
             
             if(mapOfMaps.find(context) != mapOfMaps.end()) {
-                map<char,int> tmp1 = mapOfMaps[context];
-                int charElem = tmp1[c];
-                tmp1[c] = charElem + 1;
+                map<string,int> tmp1 = mapOfMaps[context];
+                int charElem = tmp1[s];
+                tmp1[s] = charElem + 1;
                 mapOfMaps[context] = tmp1;
             } else {
 
-                map<char,int> tmp;
+                map<string,int> tmp;
 
                 // for(set<char>::iterator setIt = alphabet.begin(); setIt != alphabet.end(); setIt++) {
                 //     tmp.insert(pair<char,int>(*setIt,0));
                 // }
-                tmp.insert(pair<char,int>(c,1));
-                mapOfMaps.insert(pair<string,map<char,int>>(context,tmp));
+                tmp.insert(pair<string,int>(s,1));
+                mapOfMaps.insert(pair<string,map<string,int>>(context,tmp));
             }
 
             //Next context
             this->ctx.erase(this->ctx.cbegin());
-            this->ctx.push_back(c);
+            this->ctx.push_back(s);
 
         } else {
-            this->ctx.push_back(c);
+            this->ctx.push_back(s);
         }
     }
     ifs.close();
 }
 
 void fcm::printMap() {
-    map<string,map<char,int>>::iterator it;
+    map<string,map<string,int>>::iterator it;
 
     for (it = mapOfMaps.begin(); it != mapOfMaps.end(); it++) {
         cout << it->first << "\t";
-        map<char,int> internalMap = it->second;
-        map<char,int>::iterator it2;
+        map<string,int> internalMap = it->second;
+        map<string,int>::iterator it2;
         for(it2 = internalMap.begin(); it2 != internalMap.end(); it2++){
             cout << it2->first << "->" << it2->second << "\t";
         }
@@ -80,30 +90,30 @@ void fcm::printMap() {
     }
 }
 
-void fcm::updateMapAlphabet(char c) {
-    map<string,map<char,int>>::iterator it;
+// void fcm::updateMapAlphabet(char c) {
+//     map<string,map<char,int>>::iterator it;
 
-    for (it = mapOfMaps.begin(); it != mapOfMaps.end(); it++) {
+//     for (it = mapOfMaps.begin(); it != mapOfMaps.end(); it++) {
 
-        map<char,int> internalMap = it->second;
-        map<char,int>::iterator it2;
-        for(it2 = internalMap.begin(); it2 != internalMap.end(); it2++){
-            internalMap.insert(pair<char,int>(c,0));
-            mapOfMaps[it->first] = internalMap;
-        }
-    }
-}
+//         map<char,int> internalMap = it->second;
+//         map<char,int>::iterator it2;
+//         for(it2 = internalMap.begin(); it2 != internalMap.end(); it2++){
+//             internalMap.insert(pair<char,int>(c,0));
+//             mapOfMaps[it->first] = internalMap;
+//         }
+//     }
+// }
 
 void fcm::writeMapToFile(char * fileName){
     
-    map<string,map<char,int>>::iterator it;
+    map<string,map<string,int>>::iterator it;
     ofstream ofs;
     ofs.open(fileName, std::ofstream::out | std::ofstream::trunc);
 
     for(it = mapOfMaps.begin(); it != mapOfMaps.end(); it++) {
         ofs << it->first << "\t";
-        map<char,int> internalMap = it->second;
-        map<char,int>::iterator it2;
+        map<string,int> internalMap = it->second;
+        map<string,int>::iterator it2;
 
         for(it2 = internalMap.begin(); it2 != internalMap.end(); it2++){
             ofs << it2->first << "->" << it2->second << "\t";
@@ -124,7 +134,7 @@ void fcm::readMapFromFile(char * fileName) {
         size_t pos = line.find(delimiter);
         string firstToken = line.substr(0, pos);
         line.erase(0, pos + delimiter.length());
-        map<char,int> tmp;
+        map<string,int> tmp;
 
         while ((pos = line.find(delimiter)) != std::string::npos) {
             string token = line.substr(0, pos);
@@ -133,14 +143,14 @@ void fcm::readMapFromFile(char * fileName) {
             numberOfHitsStr.erase(0,1);
             line.erase(0, pos + delimiter.length());
 
-            int n = c.length();
-            char char_array[n + 1];
-            strcpy(char_array, c.c_str());
+            // int n = c.length();
+            // string char_array[n + 1];
+            // strcpy(char_array, c.c_str());
             int numberOfHits = stoi(numberOfHitsStr);
 
-            tmp.insert(pair<char,int>(char_array[0],numberOfHits));
+            tmp.insert(pair<string,int>(c,numberOfHits));
         }
-        mapOfMaps.insert(pair<string,map<char,int>>(firstToken,tmp));
+        mapOfMaps.insert(pair<string,map<string,int>>(firstToken,tmp));
     }
 }
 
@@ -148,9 +158,9 @@ int fcm::get_total_context(string s){
     int counter = 0;
     
     if(mapOfMaps.find(s)!=mapOfMaps.end()){
-        map<char,int> tmp;
+        map<string,int> tmp;
         tmp = mapOfMaps[s];
-        map<char,int>::iterator it2;
+        map<string,int>::iterator it2;
         for(it2 = tmp.begin(); it2 != tmp.end(); it2++){
             counter += it2->second;
         }
@@ -159,28 +169,29 @@ int fcm::get_total_context(string s){
     return counter;    
 }
 double fcm::get_entropy_context(string s){
-    double entropy;
-    double prob;
+    double entropy = 0;
+    double prob = 0;
     if(mapOfMaps.find(s)!=mapOfMaps.end()){
-        map<char,int> tmp;
+        map<string,int> tmp;
         tmp = mapOfMaps[s];
-        map<char,int>::iterator it2;
+        map<string,int>::iterator it2;
         for(it2 = tmp.begin(); it2 != tmp.end(); it2++){
             prob = (double)(it2->second) / (double)(get_total_context(s));
             entropy += prob * log(prob);
         }
+        entropy = -entropy;
     } 
-    return -entropy;
+    return entropy;
 }
 
 int fcm::get_total_map(){
     int counter = 0;
     
-    map<string,map<char,int>>::iterator it;
+    map<string,map<string,int>>::iterator it;
 
     for(it = mapOfMaps.begin(); it != mapOfMaps.end(); it++) {
-        map<char,int> internalMap = it->second;
-        map<char,int>::iterator it2;
+        map<string,int> internalMap = it->second;
+        map<string,int>::iterator it2;
 
         for(it2 = internalMap.begin(); it2 != internalMap.end(); it2++){
             counter += it2->second;
@@ -191,7 +202,7 @@ int fcm::get_total_map(){
 
 double fcm::get_entropy_map(){
     double total_entropy;
-    map<string,map<char,int>>::iterator it;
+    map<string,map<string,int>>::iterator it;
 
     for(it = mapOfMaps.begin(); it != mapOfMaps.end(); it++) {
         string s = it->first;

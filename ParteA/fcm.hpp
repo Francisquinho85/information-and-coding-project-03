@@ -10,8 +10,8 @@ class fcm {
     private:
         int k;
         int a;
-        map<string,map<char,int>> mapOfMaps;
-        vector<char> ctx;
+        map<string,map<string,int>> mapOfMaps;
+        vector<string> ctx;
     public:
         fcm(int k, int a);
         fcm();
@@ -24,5 +24,5 @@ class fcm {
         double get_entropy_context(string s);
         int get_total_map();
         double get_entropy_map();
-        set<char> alphabet;
+        set<string> alphabet;
 };
