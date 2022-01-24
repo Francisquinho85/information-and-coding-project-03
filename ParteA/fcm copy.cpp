@@ -184,7 +184,7 @@ int fcm::get_total_map(){
         map<char,int>::iterator it2;
 
         for(it2 = internalMap.begin(); it2 != internalMap.end(); it2++){
-            counter += it2->first;
+            counter += it2->second;
         }
     }
     return counter;    
