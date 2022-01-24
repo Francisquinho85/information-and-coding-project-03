@@ -30,7 +30,7 @@ void fcm::readFile(char * readFile) {
 
         if(!alphabet.count(c)){
             alphabet.insert(c);
-            //updateMapAlphabet(c);
+            updateMapAlphabet(c);
         }
 
         kDone++;
@@ -48,10 +48,11 @@ void fcm::readFile(char * readFile) {
 
                 map<char,int> tmp;
 
-                // for(set<char>::iterator setIt = alphabet.begin(); setIt != alphabet.end(); setIt++) {
-                //     tmp.insert(pair<char,int>(*setIt,0));
-                // }
-                tmp.insert(pair<char,int>(c,1));
+                for(set<char>::iterator setIt = alphabet.begin(); setIt != alphabet.end(); setIt++) {
+                    tmp.insert(pair<char,int>(*setIt,0));
+                }
+
+                tmp[c] = 1;
                 mapOfMaps.insert(pair<string,map<char,int>>(context,tmp));
             }
 
@@ -166,7 +167,7 @@ double fcm::get_entropy_context(string s){
         tmp = mapOfMaps[s];
         map<char,int>::iterator it2;
         for(it2 = tmp.begin(); it2 != tmp.end(); it2++){
-            prob = (double)(it2->second) / (double)(get_total_context(s));
+            prob = (it2->second+(double)this->a) / (get_total_context(s)+((double)this->a*3));
             entropy += prob * log(prob);
         }
     } 
@@ -183,7 +184,7 @@ int fcm::get_total_map(){
         map<char,int>::iterator it2;
 
         for(it2 = internalMap.begin(); it2 != internalMap.end(); it2++){
-            counter += it2->second;
+            counter += it2->first;
         }
     }
     return counter;    
