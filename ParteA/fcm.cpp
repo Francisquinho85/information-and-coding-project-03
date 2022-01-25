@@ -133,6 +133,24 @@ void fcm::readMapFromFile(char * fileName) {
     while(getline(ifs,line)){
         size_t pos = line.find(delimiter);
         string firstToken = line.substr(0, pos);
+
+        int n = firstToken.length();
+        char char_array[n + 1];
+        strcpy(char_array, firstToken.c_str());
+        string b = ""; 
+        for(int i=0;i<n;i++){
+            if(char_array[i]<0 || char_array[i] >127){
+                b = "";
+                b += char_array[i];
+                i++;
+                b += char_array[i];
+            }
+            else{
+                b = char_array[i];
+            }
+            alphabet.insert(b);
+        }
+
         line.erase(0, pos + delimiter.length());
         map<string,int> tmp;
 
@@ -149,6 +167,7 @@ void fcm::readMapFromFile(char * fileName) {
             int numberOfHits = stoi(numberOfHitsStr);
 
             tmp.insert(pair<string,int>(c,numberOfHits));
+            alphabet.insert(c);
         }
         mapOfMaps.insert(pair<string,map<string,int>>(firstToken,tmp));
     }
@@ -209,6 +228,13 @@ double fcm::get_entropy_map(){
         total_entropy += get_entropy_context(s) * get_total_context(s);
     } 
     return total_entropy/get_total_map();
+}
+
+void fcm::print_alphabet(){
+    for(set<string>::iterator setIt = alphabet.begin(); setIt != alphabet.end(); setIt++) {
+                cout << *setIt << endl;
+                //     tmp.insert(pair<char,int>(*setIt,0));
+    }
 }
 
 

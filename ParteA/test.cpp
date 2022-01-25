@@ -1,5 +1,6 @@
 #include "fcm.hpp"
 #include <iostream>
+#include <set>
 
 using namespace std;
 
@@ -15,6 +16,7 @@ int main(int argc,char** argv){
     cout << "get_entropy_context(ii) " << test.get_entropy_context("ii")<< "\n";
     cout << "get_total_map() "<<test.get_total_map()<< "\n";
     cout << "get_entropy_map() " << test.get_entropy_map()<< "\n";
-    test.printMap();
+    //test.printMap();
+    test.print_alphabet();
     return 0;
 }

@@ -25,4 +25,5 @@ class fcm {
         int get_total_map();
         double get_entropy_map();
         set<string> alphabet;
+        void print_alphabet();
 };
