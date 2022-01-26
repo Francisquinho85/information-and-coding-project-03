@@ -37,12 +37,8 @@ void fcm::readFile(char * readFile) {
         if(c == '\n' || c == '\t' || c == '\r'){
             continue;
         }
-
-        if(!alphabet.count(s)){
-            alphabet.insert(s);
-            //updateMapAlphabet(c);
-        }
-
+            
+        alphabet.insert(s);
         kDone++;
         if(this->k < kDone){
             for(int i = 0; i < k; i++) {
@@ -57,10 +53,6 @@ void fcm::readFile(char * readFile) {
             } else {
 
                 map<string,int> tmp;
-
-                // for(set<char>::iterator setIt = alphabet.begin(); setIt != alphabet.end(); setIt++) {
-                //     tmp.insert(pair<char,int>(*setIt,0));
-                // }
                 tmp.insert(pair<string,int>(s,1));
                 mapOfMaps.insert(pair<string,map<string,int>>(context,tmp));
             }
@@ -183,7 +175,6 @@ int fcm::get_total_context(string s){
         for(it2 = tmp.begin(); it2 != tmp.end(); it2++){
             counter += it2->second;
         }
-
     }
     return counter;    
 }
@@ -237,9 +228,24 @@ void fcm::print_alphabet(){
     }
 }
 
+int fcm::getAlphabetSize() {
+    return this->alphabet.size();
+}
 
-        
-    
+float fcm::getSymbolProb(string context, string symbol) { 
+    float prob = 0;
+    if(mapOfMaps.find(context) != mapOfMaps.end()){
+        map<string,int> tmp;
+        tmp = mapOfMaps[context];
+        map<string,int>::iterator it2;
+        if(tmp.find(symbol) != tmp.end()) {
+            prob = (float) (tmp[symbol] + this->a) / (float) (get_total_context(context) + (this->a * getAlphabetSize()));
+        }
+    } 
+    return prob;
+}   
 
-
+map<string,map<string,int>> fcm::getMapOfMaps() {
+    return mapOfMaps;
+}
 

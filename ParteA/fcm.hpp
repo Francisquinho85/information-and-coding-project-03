@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <fstream>
 #include <map>
@@ -12,6 +13,7 @@ class fcm {
         int a;
         map<string,map<string,int>> mapOfMaps;
         vector<string> ctx;
+        set<string> alphabet;
     public:
         fcm(int k, int a);
         fcm();
@@ -24,6 +26,8 @@ class fcm {
         double get_entropy_context(string s);
         int get_total_map();
         double get_entropy_map();
-        set<string> alphabet;
         void print_alphabet();
+        map<string,map<string,int>> getMapOfMaps();
+        int getAlphabetSize();
+        float getSymbolProb(string context, string symbol);
 };
