@@ -146,11 +146,12 @@ void fcm::readMapFromFile(char * fileName) {
 
         while ((pos = line.find(delimiter)) != std::string::npos) {
             string token = line.substr(0, pos);
+            //cout << token << endl;
             string c = token.substr(0,token.find("->"));
-            string numberOfHitsStr = token.substr(token.find(">"));
-            numberOfHitsStr.erase(0,1);
+            string numberOfHitsStr = token.substr(token.find("->"));
+            
+            numberOfHitsStr.erase(0,2);
             line.erase(0, pos + delimiter.length());
-
             // int n = c.length();
             // string char_array[n + 1];
             // strcpy(char_array, c.c_str());

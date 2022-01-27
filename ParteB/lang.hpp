@@ -13,5 +13,5 @@ class lang {
     public:
         lang(char * reprText, char * analysisText, int k, int a);
         lang();
-        void getEstimatedBits();
+        float getEstimatedBits();
 };

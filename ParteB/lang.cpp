@@ -16,7 +16,7 @@ lang::lang(char * rT, char * aT, int k, int a){
     estimatedBits = 0;
 }
 
-void lang::getEstimatedBits() {
+float lang::getEstimatedBits() {
     fcm f(k,alpha);
     f.readMapFromFile(reprText),
     this->rTMap = f.getMapOfMaps();
@@ -67,7 +67,7 @@ void lang::getEstimatedBits() {
         }
     }
     ifs.close();    
-    
-    printf("Estimated bits: %0.2f\n",estimatedBits);
+    return estimatedBits;
+    //printf("Estimated bits: %0.2f\n",estimatedBits);
 }
 
