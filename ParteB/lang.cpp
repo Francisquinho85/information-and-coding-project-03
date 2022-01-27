@@ -67,7 +67,7 @@ void lang::getEstimatedBits() {
         }
     }
     ifs.close();    
-
-    cout << "Estimated bits:  " << estimatedBits << endl;
+    
+    printf("Estimated bits: %0.2f\n",estimatedBits);
 }
 

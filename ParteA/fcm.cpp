@@ -21,9 +21,8 @@ void fcm::readFile(char * readFile) {
     int kDone = 0;
     char c;
     string s;
-    while(ifs.get(c)) {
+    while(ifs.get(c) && kDone < 1000000) {
         string context = "";
-
         if(c<0 || c >127){
             s = "";
             s += c;
@@ -33,7 +32,6 @@ void fcm::readFile(char * readFile) {
         else{
             s = c;
         }
-
         if(c == '\n' || c == '\t' || c == '\r'){
             continue;
         }
