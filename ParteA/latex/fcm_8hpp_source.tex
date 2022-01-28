@@ -1,0 +1,40 @@
+\hypertarget{fcm_8hpp_source}{}\doxysection{fcm.\+hpp}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include <fstream>}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#include <map>}}
+\DoxyCodeLine{5 \textcolor{preprocessor}{\#include <set>}}
+\DoxyCodeLine{6 \textcolor{preprocessor}{\#include <vector>}}
+\DoxyCodeLine{7 }
+\DoxyCodeLine{8 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{9 }
+\DoxyCodeLine{11 }
+\DoxyCodeLine{18 }
+\DoxyCodeLine{19 \textcolor{keyword}{class }\mbox{\hyperlink{classfcm}{fcm}} \{}
+\DoxyCodeLine{20     \textcolor{keyword}{private}:}
+\DoxyCodeLine{22         \textcolor{keywordtype}{int} k;}
+\DoxyCodeLine{24         \textcolor{keywordtype}{int} a;}
+\DoxyCodeLine{26         map<string,map<string,int>> mapOfMaps;}
+\DoxyCodeLine{28         vector<string> ctx;}
+\DoxyCodeLine{30         set<string> alphabet;}
+\DoxyCodeLine{31     \textcolor{keyword}{public}:}
+\DoxyCodeLine{35         \mbox{\hyperlink{classfcm_a7e137dd1ac5400ab5b85505244a87212}{fcm}}(\textcolor{keywordtype}{int} k, \textcolor{keywordtype}{int} a);}
+\DoxyCodeLine{37         \mbox{\hyperlink{classfcm_a7e137dd1ac5400ab5b85505244a87212}{fcm}}();}
+\DoxyCodeLine{40         \textcolor{keywordtype}{void} \mbox{\hyperlink{classfcm_accbaa3b01dd5fadaaa906a88eaa10e59}{readFile}}(\textcolor{keywordtype}{char} * fileName);}
+\DoxyCodeLine{42         \textcolor{keywordtype}{void} \mbox{\hyperlink{classfcm_a02116cf7d3287c9e0cebccd7f378a02f}{printMap}}();}
+\DoxyCodeLine{45         \textcolor{keywordtype}{void} \mbox{\hyperlink{classfcm_ab9bb17d5d390185c3a69c0feece3ad86}{updateMapAlphabet}}(\textcolor{keywordtype}{char} c);}
+\DoxyCodeLine{48         \textcolor{keywordtype}{void} \mbox{\hyperlink{classfcm_a7705778e37c5baad6c6b773382b3a185}{writeMapToFile}}(\textcolor{keywordtype}{char} * fileToWrite);}
+\DoxyCodeLine{51         \textcolor{keywordtype}{void} \mbox{\hyperlink{classfcm_acbeadf55b3cdc0030e94b5587b59d393}{readMapFromFile}}(\textcolor{keywordtype}{char} * fileToRead);}
+\DoxyCodeLine{55         \textcolor{keywordtype}{int} \mbox{\hyperlink{classfcm_a428d2cff2bb5eba86dff877d988f1db9}{get\_total\_context}}(\textcolor{keywordtype}{string} s);}
+\DoxyCodeLine{59         \textcolor{keywordtype}{double} \mbox{\hyperlink{classfcm_aa1c32962340c09d48151afcaf60efecb}{get\_entropy\_context}}(\textcolor{keywordtype}{string} s);}
+\DoxyCodeLine{62         \textcolor{keywordtype}{int} \mbox{\hyperlink{classfcm_a2308507387dc658c84c5c2c406bfe354}{get\_total\_map}}();}
+\DoxyCodeLine{65         \textcolor{keywordtype}{double} \mbox{\hyperlink{classfcm_a7318d664e108ecf7388e19cf46de5bca}{get\_entropy\_map}}();}
+\DoxyCodeLine{67         \textcolor{keywordtype}{void} \mbox{\hyperlink{classfcm_ab13c5211aed47acaf6835284a9397012}{print\_alphabet}}();}
+\DoxyCodeLine{70         map<string,map<string,int>> \mbox{\hyperlink{classfcm_af888e1bf4a9ea194d599373383d53737}{getMapOfMaps}}();}
+\DoxyCodeLine{73         \textcolor{keywordtype}{int} \mbox{\hyperlink{classfcm_a2d468780cb2835180e27ba3c22b7db44}{getAlphabetSize}}();}
+\DoxyCodeLine{78         \textcolor{keywordtype}{float} \mbox{\hyperlink{classfcm_aab9204d26d09f29c83c0c11f9b4ba10c}{getSymbolProb}}(\textcolor{keywordtype}{string} context, \textcolor{keywordtype}{string} symbol);}
+\DoxyCodeLine{79 \};}
+
+\end{DoxyCode}
