@@ -15,7 +15,6 @@ using namespace std;
 /// int a = atoi(argv[2]);
 /// fcm test(k,a);
 /// ~~~~~~~~~~~~~~~~~~~~~~
-
 class fcm {
     private:
         /// The order of the model.
@@ -40,8 +39,8 @@ class fcm {
         void readFile(char * fileName);
         /// Print the map.
         void printMap();
-        ///
-        /// @param c description
+        /// Update the alphabet with a new character.
+        /// @param c Character to be added on the map.
         void updateMapAlphabet(char c);
         /// Write the map in a file.
         /// @param fileToWrite File for writing the map.
