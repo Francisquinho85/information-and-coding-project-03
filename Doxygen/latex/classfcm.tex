@@ -1,0 +1,208 @@
+\hypertarget{classfcm}{}\doxysection{fcm Class Reference}
+\label{classfcm}\index{fcm@{fcm}}
+
+
+A class with the aim of collecting statistical information about texts, using finite-\/context models.  
+
+
+
+
+{\ttfamily \#include $<$fcm.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classfcm_a3350f826bf8963e57ba93a4573d5a106}{fcm}} (int k, int a)
+\item 
+\mbox{\Hypertarget{classfcm_a7e137dd1ac5400ab5b85505244a87212}\label{classfcm_a7e137dd1ac5400ab5b85505244a87212}} 
+{\bfseries fcm} ()
+\begin{DoxyCompactList}\small\item\em Constructor of fcm class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classfcm_accbaa3b01dd5fadaaa906a88eaa10e59}{read\+File}} (char $\ast$file\+Name)
+\item 
+\mbox{\Hypertarget{classfcm_a02116cf7d3287c9e0cebccd7f378a02f}\label{classfcm_a02116cf7d3287c9e0cebccd7f378a02f}} 
+void {\bfseries print\+Map} ()
+\begin{DoxyCompactList}\small\item\em Print the map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classfcm_ab9bb17d5d390185c3a69c0feece3ad86}{update\+Map\+Alphabet}} (char c)
+\item 
+void \mbox{\hyperlink{classfcm_a7705778e37c5baad6c6b773382b3a185}{write\+Map\+To\+File}} (char $\ast$file\+To\+Write)
+\item 
+void \mbox{\hyperlink{classfcm_acbeadf55b3cdc0030e94b5587b59d393}{read\+Map\+From\+File}} (char $\ast$file\+To\+Read)
+\item 
+int \mbox{\hyperlink{classfcm_a428d2cff2bb5eba86dff877d988f1db9}{get\+\_\+total\+\_\+context}} (string s)
+\item 
+double \mbox{\hyperlink{classfcm_aa1c32962340c09d48151afcaf60efecb}{get\+\_\+entropy\+\_\+context}} (string s)
+\item 
+int \mbox{\hyperlink{classfcm_a2308507387dc658c84c5c2c406bfe354}{get\+\_\+total\+\_\+map}} ()
+\item 
+double \mbox{\hyperlink{classfcm_a7318d664e108ecf7388e19cf46de5bca}{get\+\_\+entropy\+\_\+map}} ()
+\item 
+\mbox{\Hypertarget{classfcm_ab13c5211aed47acaf6835284a9397012}\label{classfcm_ab13c5211aed47acaf6835284a9397012}} 
+void {\bfseries print\+\_\+alphabet} ()
+\begin{DoxyCompactList}\small\item\em Print all the letters of the specific alphabet. \end{DoxyCompactList}\item 
+map$<$ string, map$<$ string, int $>$ $>$ \mbox{\hyperlink{classfcm_af888e1bf4a9ea194d599373383d53737}{get\+Map\+Of\+Maps}} ()
+\item 
+int \mbox{\hyperlink{classfcm_a2d468780cb2835180e27ba3c22b7db44}{get\+Alphabet\+Size}} ()
+\item 
+float \mbox{\hyperlink{classfcm_aab9204d26d09f29c83c0c11f9b4ba10c}{get\+Symbol\+Prob}} (string context, string symbol)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A class with the aim of collecting statistical information about texts, using finite-\/context models. 
+
+\hypertarget{classfcm_autotoc_md0}{}\doxyparagraph{Example}\label{classfcm_autotoc_md0}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{int} k =  atoi(argv[1]);}
+\DoxyCodeLine{\textcolor{keywordtype}{int} a = atoi(argv[2]);}
+\DoxyCodeLine{\mbox{\hyperlink{classfcm}{fcm}} test(k,a);}
+
+\end{DoxyCode}
+ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classfcm_a3350f826bf8963e57ba93a4573d5a106}\label{classfcm_a3350f826bf8963e57ba93a4573d5a106}} 
+\index{fcm@{fcm}!fcm@{fcm}}
+\index{fcm@{fcm}!fcm@{fcm}}
+\doxysubsubsection{\texorpdfstring{fcm()}{fcm()}}
+{\footnotesize\ttfamily fcm\+::fcm (\begin{DoxyParamCaption}\item[{int}]{k,  }\item[{int}]{a }\end{DoxyParamCaption})}
+
+Constructor of fcm class 
+\begin{DoxyParams}{Parameters}
+{\em k} & The order of the model. \\
+\hline
+{\em a} & Smoothing parameter. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classfcm_aa1c32962340c09d48151afcaf60efecb}\label{classfcm_aa1c32962340c09d48151afcaf60efecb}} 
+\index{fcm@{fcm}!get\_entropy\_context@{get\_entropy\_context}}
+\index{get\_entropy\_context@{get\_entropy\_context}!fcm@{fcm}}
+\doxysubsubsection{\texorpdfstring{get\_entropy\_context()}{get\_entropy\_context()}}
+{\footnotesize\ttfamily double fcm\+::get\+\_\+entropy\+\_\+context (\begin{DoxyParamCaption}\item[{string}]{s }\end{DoxyParamCaption})}
+
+Get the entropy of a given context. 
+\begin{DoxyParams}{Parameters}
+{\em s} & String with the given context. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Entropy of a given context. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classfcm_a7318d664e108ecf7388e19cf46de5bca}\label{classfcm_a7318d664e108ecf7388e19cf46de5bca}} 
+\index{fcm@{fcm}!get\_entropy\_map@{get\_entropy\_map}}
+\index{get\_entropy\_map@{get\_entropy\_map}!fcm@{fcm}}
+\doxysubsubsection{\texorpdfstring{get\_entropy\_map()}{get\_entropy\_map()}}
+{\footnotesize\ttfamily double fcm\+::get\+\_\+entropy\+\_\+map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get the entropy of all map. \begin{DoxyReturn}{Returns}
+Entropy of all map. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classfcm_a428d2cff2bb5eba86dff877d988f1db9}\label{classfcm_a428d2cff2bb5eba86dff877d988f1db9}} 
+\index{fcm@{fcm}!get\_total\_context@{get\_total\_context}}
+\index{get\_total\_context@{get\_total\_context}!fcm@{fcm}}
+\doxysubsubsection{\texorpdfstring{get\_total\_context()}{get\_total\_context()}}
+{\footnotesize\ttfamily int fcm\+::get\+\_\+total\+\_\+context (\begin{DoxyParamCaption}\item[{string}]{s }\end{DoxyParamCaption})}
+
+Get the total of number of times letters appear after a given context. 
+\begin{DoxyParams}{Parameters}
+{\em s} & String with the given context. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The number of times letters appear after a given context. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classfcm_a2308507387dc658c84c5c2c406bfe354}\label{classfcm_a2308507387dc658c84c5c2c406bfe354}} 
+\index{fcm@{fcm}!get\_total\_map@{get\_total\_map}}
+\index{get\_total\_map@{get\_total\_map}!fcm@{fcm}}
+\doxysubsubsection{\texorpdfstring{get\_total\_map()}{get\_total\_map()}}
+{\footnotesize\ttfamily int fcm\+::get\+\_\+total\+\_\+map (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get the total of number of times the letters appeared in all map. \begin{DoxyReturn}{Returns}
+The number of times the letters appeared in all map. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classfcm_a2d468780cb2835180e27ba3c22b7db44}\label{classfcm_a2d468780cb2835180e27ba3c22b7db44}} 
+\index{fcm@{fcm}!getAlphabetSize@{getAlphabetSize}}
+\index{getAlphabetSize@{getAlphabetSize}!fcm@{fcm}}
+\doxysubsubsection{\texorpdfstring{getAlphabetSize()}{getAlphabetSize()}}
+{\footnotesize\ttfamily int fcm\+::get\+Alphabet\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get the specific alphabet size. \begin{DoxyReturn}{Returns}
+Size of alphabet. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classfcm_af888e1bf4a9ea194d599373383d53737}\label{classfcm_af888e1bf4a9ea194d599373383d53737}} 
+\index{fcm@{fcm}!getMapOfMaps@{getMapOfMaps}}
+\index{getMapOfMaps@{getMapOfMaps}!fcm@{fcm}}
+\doxysubsubsection{\texorpdfstring{getMapOfMaps()}{getMapOfMaps()}}
+{\footnotesize\ttfamily map$<$ string, map$<$ string, int $>$ $>$ fcm\+::get\+Map\+Of\+Maps (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Get the Map\+Of\+Maps content \begin{DoxyReturn}{Returns}
+description of the return value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classfcm_aab9204d26d09f29c83c0c11f9b4ba10c}\label{classfcm_aab9204d26d09f29c83c0c11f9b4ba10c}} 
+\index{fcm@{fcm}!getSymbolProb@{getSymbolProb}}
+\index{getSymbolProb@{getSymbolProb}!fcm@{fcm}}
+\doxysubsubsection{\texorpdfstring{getSymbolProb()}{getSymbolProb()}}
+{\footnotesize\ttfamily float fcm\+::get\+Symbol\+Prob (\begin{DoxyParamCaption}\item[{string}]{context,  }\item[{string}]{symbol }\end{DoxyParamCaption})}
+
+Get the probability of a symbol. 
+\begin{DoxyParams}{Parameters}
+{\em context} & String with the given context. \\
+\hline
+{\em symbol} & String with the given symbol. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Probability of a symbol. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classfcm_accbaa3b01dd5fadaaa906a88eaa10e59}\label{classfcm_accbaa3b01dd5fadaaa906a88eaa10e59}} 
+\index{fcm@{fcm}!readFile@{readFile}}
+\index{readFile@{readFile}!fcm@{fcm}}
+\doxysubsubsection{\texorpdfstring{readFile()}{readFile()}}
+{\footnotesize\ttfamily void fcm\+::read\+File (\begin{DoxyParamCaption}\item[{char $\ast$}]{file\+Name }\end{DoxyParamCaption})}
+
+Reading a particular file for analysis. 
+\begin{DoxyParams}{Parameters}
+{\em file\+Name} & File to be read. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classfcm_acbeadf55b3cdc0030e94b5587b59d393}\label{classfcm_acbeadf55b3cdc0030e94b5587b59d393}} 
+\index{fcm@{fcm}!readMapFromFile@{readMapFromFile}}
+\index{readMapFromFile@{readMapFromFile}!fcm@{fcm}}
+\doxysubsubsection{\texorpdfstring{readMapFromFile()}{readMapFromFile()}}
+{\footnotesize\ttfamily void fcm\+::read\+Map\+From\+File (\begin{DoxyParamCaption}\item[{char $\ast$}]{file\+To\+Read }\end{DoxyParamCaption})}
+
+Read the map from a file. 
+\begin{DoxyParams}{Parameters}
+{\em file\+To\+Read} & File for reading a map. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classfcm_ab9bb17d5d390185c3a69c0feece3ad86}\label{classfcm_ab9bb17d5d390185c3a69c0feece3ad86}} 
+\index{fcm@{fcm}!updateMapAlphabet@{updateMapAlphabet}}
+\index{updateMapAlphabet@{updateMapAlphabet}!fcm@{fcm}}
+\doxysubsubsection{\texorpdfstring{updateMapAlphabet()}{updateMapAlphabet()}}
+{\footnotesize\ttfamily void fcm\+::update\+Map\+Alphabet (\begin{DoxyParamCaption}\item[{char}]{c }\end{DoxyParamCaption})}
+
+Update the alphabet with a new character. 
+\begin{DoxyParams}{Parameters}
+{\em c} & Character to be added on the map. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classfcm_a7705778e37c5baad6c6b773382b3a185}\label{classfcm_a7705778e37c5baad6c6b773382b3a185}} 
+\index{fcm@{fcm}!writeMapToFile@{writeMapToFile}}
+\index{writeMapToFile@{writeMapToFile}!fcm@{fcm}}
+\doxysubsubsection{\texorpdfstring{writeMapToFile()}{writeMapToFile()}}
+{\footnotesize\ttfamily void fcm\+::write\+Map\+To\+File (\begin{DoxyParamCaption}\item[{char $\ast$}]{file\+To\+Write }\end{DoxyParamCaption})}
+
+Write the map in a file. 
+\begin{DoxyParams}{Parameters}
+{\em file\+To\+Write} & File for writing the map. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+fcm.\+hpp\end{DoxyCompactItemize}
