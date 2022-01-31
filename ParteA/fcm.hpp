@@ -20,7 +20,7 @@ class fcm {
         /// The order of the model.
         int k;
         /// Smoothing parameter.
-        int a;
+        double a;
         /// The map with all the contents concerning the number of times each letter appeared after a certain context.
         map<string,map<string,int>> mapOfMaps;
         /// Vector with all the contexts.

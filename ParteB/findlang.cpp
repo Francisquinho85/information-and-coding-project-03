@@ -6,7 +6,7 @@
 
 using namespace std;
 
-string findlang(char * targetText, int k) {
+string findlang(char * targetText, int k, int a) {
     float minEstimatedBits = __FLT_MAX__;
     string foundLang = "";
     char* path = "../maps/";
@@ -18,14 +18,13 @@ string findlang(char * targetText, int k) {
     int n = kPath.length();
     char charPath[n + 1];
     strcpy(charPath, kPath.c_str());
-    
     if ((dir = opendir (charPath)) != NULL) {
         while ((ent = readdir (dir)) != NULL) {
             if (ent->d_type != DT_DIR) {
                 char* mapName = new char[strlen(charPath)+strlen(ent->d_name)+1];
                 strcpy(mapName,charPath);
                 strcat(mapName,ent->d_name);
-                lang l(mapName,targetText,k,1);
+                lang l(mapName,targetText,k,a);
                 float ebits = l.getEstimatedBits();
                 if(ebits < minEstimatedBits) {
                     minEstimatedBits = ebits;
@@ -44,7 +43,7 @@ string findlang(char * targetText, int k) {
 }
 
 int main(int argc, char** argv){
-    string foundLang = findlang(argv[1],atoi(argv[2]));
+    string foundLang = findlang(argv[1],atoi(argv[2]),atoi(argv[3]));
     //cout << argv[1] << "'s text language: " << foundLang << endl;
     return 0;
 }

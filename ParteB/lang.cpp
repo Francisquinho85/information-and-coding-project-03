@@ -12,7 +12,7 @@ lang::lang(char * rT, char * aT, int k, int a){
     reprText = rT;
     analysisText = aT;
     this->k = k;
-    alpha = a;
+    alpha = (double)a/100;
     estimatedBits = 0;
 }
 

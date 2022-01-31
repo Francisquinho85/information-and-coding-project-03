@@ -12,7 +12,7 @@ using namespace std;
 
 fcm::fcm(int k, int a){
     this->k = k;
-    this->a = a;
+    this->a = (double)a/100;
 }
 
 void fcm::readFile(char * readFile) {

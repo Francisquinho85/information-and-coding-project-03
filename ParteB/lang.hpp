@@ -22,7 +22,7 @@ class lang {
         /// The order of the model.
         int k;
         /// Smoothing parameter.
-        int alpha;
+        double alpha;
     public:
         /// Constructor of lang class
         /// @param reprText File text representing the class ri.
