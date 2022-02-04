@@ -222,9 +222,10 @@ double fcm::get_entropy_map(){
 
 void fcm::print_alphabet(){
     for(set<string>::iterator setIt = alphabet.begin(); setIt != alphabet.end(); setIt++) {
-                cout << *setIt << endl;
+                cout << *setIt << " ";
                 //     tmp.insert(pair<char,int>(*setIt,0));
     }
+    cout << endl;
 }
 
 int fcm::getAlphabetSize() {
