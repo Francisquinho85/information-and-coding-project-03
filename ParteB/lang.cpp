@@ -14,6 +14,7 @@ lang::lang(char * rT, char * aT, int k, int a){
     this->k = k;
     alpha = (double)a/100;
     estimatedBits = 0;
+    kDone = 0;
 }
 
 float lang::getEstimatedBits() {
@@ -22,7 +23,7 @@ float lang::getEstimatedBits() {
     this->rTMap = f.getMapOfMaps();
     
     ifstream ifs(analysisText);
-    int kDone = 0;
+    kDone = 0;
     char c;
     string s;
     string ctx;
@@ -71,3 +72,6 @@ float lang::getEstimatedBits() {
     //printf("Estimated bits: %0.2f\n",estimatedBits);
 }
 
+int lang::get_kDone(){
+    return kDone;
+}

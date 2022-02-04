@@ -23,6 +23,7 @@ class lang {
         int k;
         /// Smoothing parameter.
         double alpha;
+        int kDone;
     public:
         /// Constructor of lang class
         /// @param reprText File text representing the class ri.
@@ -35,4 +36,5 @@ class lang {
         /// Get the estimated number of bits required to compress t, using the model computed from ri.
         /// @return The estimated number of bits required to compress t, using the model computed from ri.
         float getEstimatedBits();
+        int get_kDone();
 };

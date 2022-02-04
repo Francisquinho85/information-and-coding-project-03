@@ -31,7 +31,8 @@ string findlang(char * targetText, int k, int a) {
                     foundLang = ent->d_name;
                 }
                 cout << "Map: " << ent->d_name << "\t";
-                cout << "Estimated size: " << (int) ebits << " bits" << endl;
+                cout << "Estimated size: " << (int) ebits << " bits" << "\t";
+                cout << (float) ebits/l.get_kDone() << " bits/symbol" << endl;
             }
         }
         closedir (dir);
